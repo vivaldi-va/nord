@@ -1,0 +1,143 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nord Software | Test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="nordTestApp">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+
+<div class="site" ng-controller="MainCtrl">
+
+    <div class="container">
+        <div class="row">
+            <header class="navbar navbar-inverse top-bar">
+                <a href="#" class="navbar-brand">Persons Table</a>
+            </header>
+        </div>
+        <div id="main-content" class="row">
+            <section id="table-section" class="col-md-6">
+                <h2>Persons list</h2>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">persons</h3>
+                    </div>
+                    <table class="table persons-table">
+                        <thead>
+
+                        <tr>
+                            <th></th>
+                            <th ng-click="order='id'" ng-class="{active: order=='id'}">#</th>
+                            <th ng-click="order='name'" ng-class="{active: order=='name'}">Name</th>
+                            <th ng-click="order='gender'" ng-class="{active: order=='gender'}">Gender</th>
+                            <th ng-click="order='age'" ng-class="{active: order=='age'}">Age</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="(id, person) in persons | orderObjectBy:order | filterObjs:search" ng-animate="'animate'"
+                            class="person-row">
+
+                            <td>
+                                <button class="btn btn-danger btn-xs"
+                                        ng-click="removePerson(person.id)">&times;</button>
+                            </td>
+                            <td>{{ person.id }}</td>
+                            <td>{{ person.name }}</td>
+                            <td>{{ person.gender }}</td>
+                            <td>{{ person.age }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-error" ng-show="!!error"><strong>{{ error }}</strong></div>
+                <div class="alert alert-info" ng-show="!persons"><strong>no persons in list</strong></div>
+
+            </section>
+            <section id="form" class="col-md-6">
+                <h2>Add new person</h2>
+
+                <div class="well">
+                    <form action="" class="form-horizontal" ng-submit="addPerson()">
+                        <div class="form-group">
+                            <label for="form-name" class="col-md-2 control-label">name</label>
+
+                            <div class="col-md-10">
+                                <input id="form-name" class="form-control" name="form-name" type="text" ng-model="name"
+                                       required
+                                       autocomplete="false" tabindex="1">
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="form-gender" class="control-label col-md-2">gender</label>
+
+                            <div class="col-md-10">
+                                <select name="form-gender" id="form-gender" class="form-control" ng-model="gender"
+                                        required="" tabindex="2">
+                                    <option value="male">male</option>
+                                    <option value="female">female</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="form-age" class="col-md-2 control-label">age</label>
+
+                            <div class="col-md-10">
+                                <input id="form-age" class="form-control" type="number" ng-model="age" required
+                                       tabindex="3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary pull-right" tabindex="4">add person</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/plugins.js -->
+<script src="scripts/bootstrap.min.js"></script>
+<!-- endbuild -->
+</body>
+</html>

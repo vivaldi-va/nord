@@ -1,0 +1,59 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+
+html {
+  font-size: 10px;
+}
+
+
+body {
+  background: #fafafa;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  font-family: 'lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #4f4f4f;
+}
+
+.persons-table {
+  tbody {
+    tr {
+      -webkit-animation: expand 0.5s;
+      animation: expand 0.5s;
+
+
+
+      td {
+        vertical-align: middle;
+      }
+
+    }
+
+  }
+}
+
+
+@-webkit-keyframes expand {
+  0% {opacity:0;height:0px;}
+  100%{opacity:1;height:auto;}
+}
+
+
+.animate-enter,
+.animate-leave
+{
+  -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  position: relative;
+  display: block;
+}
+
+.animate-enter.animate-enter-active,
+.animate-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+
+}
